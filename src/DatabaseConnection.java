@@ -19,11 +19,9 @@ public class DatabaseConnection {
             String url=props.getProperty("db.url");
             String user=props.getProperty("db.user");
             String password=props.getProperty("db.password");
-
+            System.out.println("url: "+ url);
             Connection con = DriverManager.getConnection(url, user, password);
             System.out.println("✅ Connexion réussie !");
-
-
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from plantes");
 
