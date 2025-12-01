@@ -1,8 +1,5 @@
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 public class DatabaseConnection {
@@ -24,6 +21,20 @@ public class DatabaseConnection {
             System.out.println("✅ Connexion réussie !");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * from plantes");
+
+            //Traitement des colonnes d'une table
+
+            ResultSetMetaData rsMetaData= (ResultSetMetaData)  rs.getMetaData();
+            //recuperer le nombre de colonnes de la table
+            int nCols=rsMetaData.getColumnCount();
+            System.out.println("nCols: " + nCols);
+            //recuperer les noms de ces colonnes
+            String [] resColNames= new String[nCols];
+            for( int c=1;c<=nCols; c++){
+                String el=rsMetaData.getColumnLabel(c);
+                //System.out.println("el : "+ el);
+                resColNames[c-1]=el;
+            }
 
             while (rs.next()) {
                 System.out.println(rs.getInt("id_plante") + " - " + rs.getString("nom_plante"));

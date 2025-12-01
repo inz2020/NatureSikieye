@@ -53,11 +53,6 @@ section.top-page {
 
 
 /* menu de navigation */
-
-
-/* Une flexbox est une boite qui va contenir des items; des items qui peuvent se mettre en colones ou en lignes, à gauche ou à droite */
-/* margin est un espace externe et padding pour espace interne */
-
 nav.nav {
     display: flex;
     list-style: none;
